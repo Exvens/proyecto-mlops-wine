@@ -1,4 +1,5 @@
 import pandas as pd
+import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
@@ -23,6 +24,7 @@ def train_model(X_train, X_test, y_train, y_test):
     with mlflow.start_run():
         modelo = RandomForestRegressor(n_estimators=100, random_state=42)
         modelo.fit(X_train, y_train)
+        joblib.dump(modelo, 'models/modelo_vino.joblib')
         
         predicciones = modelo.predict(X_test)
         error = mean_squared_error(y_test, predicciones)
