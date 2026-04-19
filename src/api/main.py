@@ -3,10 +3,13 @@ from pydantic import BaseModel
 import joblib
 
 # Crear la aplicación API
-app = FastAPI(title="API de Calidad de Vinos", description="Predice la calidad del vino tinto")
+app = FastAPI(
+    title="API de Calidad de Vinos", description="Predice la calidad del vino tinto"
+)
 
 # Cargar nuestro modelo entrenado
 modelo = joblib.load("models/modelo_vino.joblib")
+
 
 # Definir los datos exactos que el usuario debe enviarnos
 class WineFeatures(BaseModel):
@@ -22,19 +25,29 @@ class WineFeatures(BaseModel):
     sulphates: float
     alcohol: float
 
+
 # Crear la ruta (endpoint) donde recibiremos los datos
 @app.post("/predict")
 def predict_quality(wine: WineFeatures):
     # Organizar los datos en el mismo orden que aprendió el modelo
-    datos = [[
-        wine.fixed_acidity, wine.volatile_acidity, wine.citric_acid, 
-        wine.residual_sugar, wine.chlorides, wine.free_sulfur_dioxide, 
-        wine.total_sulfur_dioxide, wine.density, wine.pH, 
-        wine.sulphates, wine.alcohol
-    ]]
-    
+    datos = [
+        [
+            wine.fixed_acidity,
+            wine.volatile_acidity,
+            wine.citric_acid,
+            wine.residual_sugar,
+            wine.chlorides,
+            wine.free_sulfur_dioxide,
+            wine.total_sulfur_dioxide,
+            wine.density,
+            wine.pH,
+            wine.sulphates,
+            wine.alcohol,
+        ]
+    ]
+
     # Hacer la predicción
     prediccion = modelo.predict(datos)
-    
+
     # Devolver el resultado (redondeado a 2 decimales)
     return {"calidad_estimada_del_vino": round(prediccion[0], 2)}
