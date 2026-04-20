@@ -6,6 +6,8 @@ Giobany Obando,
 
 Javier Eduardo Guerrero Buendia 
 
+Link base de datos: https://drive.google.com/drive/folders/1J75ukeq-2yBUYGMQh79ktTFNXWaeHGGJ?usp=sharing
+
 Este repositorio contiene un proyecto end-to-end de Machine Learning Operations (MLOps) desarrollado para automatizar el ciclo de vida de un modelo predictivo, desde el seguimiento de experimentos hasta el despliegue como API.
 
 ## 1. Definición del Proyecto (Hipótesis de Negocio)
