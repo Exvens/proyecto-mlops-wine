@@ -2,7 +2,7 @@ Proyecto Final
 
 Integrantes:
 
-Giobany Obando, 
+Giovanny Obando Duque, 
 
 Javier Eduardo Guerrero Buendia 
 
